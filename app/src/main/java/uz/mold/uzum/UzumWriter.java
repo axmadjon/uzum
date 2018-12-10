@@ -31,6 +31,10 @@ public final class UzumWriter {
         this.printer.print(str);
     }
 
+    public void write(byte[] bytes) {
+        this.printer.print(bytes);
+    }
+
     public <E> void write(E item, UzumAdapter<E> adapter) {
         this.printer.printOpen();
         adapter.write(this, item);
