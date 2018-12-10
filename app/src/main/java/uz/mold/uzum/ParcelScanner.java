@@ -6,6 +6,7 @@ class ParcelScanner implements Scanner {
 
     private final Parcel source;
     private String val;
+    private byte[] valBytes;
     private int token;
     private boolean peeked;
 
@@ -18,6 +19,11 @@ class ParcelScanner implements Scanner {
         return val;
     }
 
+    @Override
+    public byte[] valBytes() {
+        return valBytes;
+    }
+
     private boolean readNew() {
         boolean hasValue = this.source.dataAvail() != 0;
         if (hasValue) {
@@ -26,9 +32,13 @@ class ParcelScanner implements Scanner {
                 case UzumToken.STRING:
                     this.val = source.readString();
                     break;
+                case UzumToken.BYTES:
+                    this.valBytes = source.createByteArray();
+                    break;
                 case UzumToken.OPEN:
                 case UzumToken.CLOSE:
                     this.val = null;
+                    this.valBytes = null;
                     break;
                 default:
                     throw new UzumException("Invalid token in ParcelScanner = " + token);

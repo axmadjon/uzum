@@ -7,4 +7,6 @@ interface Printer {
     void printClose();
 
     void print(String str);
+
+    void print(byte[] bytes);
 }

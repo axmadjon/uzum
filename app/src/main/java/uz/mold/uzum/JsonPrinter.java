@@ -38,4 +38,9 @@ class JsonPrinter implements Printer {
             throw new UzumException(e);
         }
     }
+
+    @Override
+    public void print(byte[] bytes) {
+        throw new UnsupportedOperationException("JSON not support byte arrays");
+    }
 }

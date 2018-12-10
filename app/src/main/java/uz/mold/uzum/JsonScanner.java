@@ -20,6 +20,11 @@ class JsonScanner implements Scanner {
     }
 
     @Override
+    public byte[] valBytes() {
+        throw new UnsupportedOperationException("JSON not support byte arrays");
+    }
+
+    @Override
     public int next() {
         this.val = null;
         try {

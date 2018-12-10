@@ -21,6 +21,10 @@ public final class UzumReader {
         return this.scanner.peek() == UzumToken.STRING;
     }
 
+    public boolean isByteArray() {
+        return this.scanner.peek() == UzumToken.BYTES;
+    }
+
     public boolean isOpen() {
         return this.scanner.peek() == UzumToken.OPEN;
     }
@@ -73,6 +77,15 @@ public final class UzumReader {
         return null;
     }
 
+
+    public byte[] readByteArray() {
+        if (isByteArray()) {
+            this.scanner.next();
+            return this.scanner.valBytes();
+        }
+        return null;
+    }
+
     public <E> E readValue(UzumAdapter<E> adapter) {
         if (isOpen()) {
             this.scanner.next();
@@ -100,7 +113,7 @@ public final class UzumReader {
     }
 
     public void skipValue() {
-        if (isString()) {
+        if (isString() || isByteArray()) {
             this.scanner.next();
         } else if (isOpen()) {
             this.scanner.next();

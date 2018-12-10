@@ -4,6 +4,8 @@ interface Scanner {
 
     String val();
 
+    byte[] valBytes();
+
     int next();
 
     int peek();

@@ -112,6 +112,9 @@ public final class Uzum {
                 case UzumToken.STRING:
                     printer.print(scanner.val());
                     break;
+                case UzumToken.BYTES:
+                    printer.print(scanner.valBytes());
+                    break;
                 case UzumToken.OPEN:
                     printer.printOpen();
                     break;

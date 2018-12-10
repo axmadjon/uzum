@@ -25,4 +25,10 @@ class ParcelPrinter implements Printer {
         this.source.writeByte((byte) UzumToken.STRING);
         this.source.writeString(str == null ? "" : str);
     }
+
+    @Override
+    public void print(byte[] bytes) {
+        this.source.writeByte((byte) UzumToken.BYTES);
+        this.source.writeByteArray(bytes == null ? new byte[0] : bytes);
+    }
 }
